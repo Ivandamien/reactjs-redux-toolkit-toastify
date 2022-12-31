@@ -11,16 +11,15 @@ function App() {
 
   return (
     <div className="App">
-      <h1>React + Redux Toolkit + Toast</h1>
       <div className="card">
         <Button colorScheme="blue" onClick={() => setActiveView("promise")}>
           With Promise
         </Button>
-        <Button colorScheme="purple" onClick={() => setActiveView("redux")}>
-          With Redux Toolkit
-        </Button>
         <Button colorScheme="green" onClick={() => setActiveView("chakra")}>
-          With Chakra UI
+          With Chakra Toast
+        </Button>
+        <Button colorScheme="purple" onClick={() => setActiveView("redux")}>
+          With Redux + Toastify
         </Button>
       </div>
 
