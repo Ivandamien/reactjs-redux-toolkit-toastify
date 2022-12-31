@@ -10,15 +10,16 @@ const initialState = {
   error: null,
 };
 
-export const userLogin = createAsyncThunk("chakraAuth/userLogin", async (_, thunkAPI) => {
+export const chakraUserLogin = createAsyncThunk("auth/chakraUserLogin", async (user, thunkAPI) => {
   const { rejectWithValue } = thunkAPI;
+  const { username, password } = user;
 
   try {
     const { data } = await apiInstance.post(
       "/auth/login",
       {
-        username: user.username, // 'kminchelle'
-        password: user.password, // '0lelplR'
+        username, // 'kminchelle'
+        password, // '0lelplR'
       },
       {
         headers: {
@@ -33,15 +34,15 @@ export const userLogin = createAsyncThunk("chakraAuth/userLogin", async (_, thun
 });
 
 export const chakraAuthSlice = createSlice({
-  name: "chakraAuth",
+  name: "auth",
   initialState,
   extraReducers: {
-    [userLogin.pending]: state => {
+    [chakraUserLogin.pending]: state => {
       state.isLoading = true;
       state.data = null;
       state.error = null;
     },
-    [userLogin.fulfilled]: (state, action) => {
+    [chakraUserLogin.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.data = action.payload;
       state.error = null;
@@ -51,12 +52,12 @@ export const chakraAuthSlice = createSlice({
         isClosable: true,
       });
     },
-    [userLogin.rejected]: (state, action) => {
+    [chakraUserLogin.rejected]: (state, action) => {
       state.isLoading = false;
       state.data = null;
       state.error = "";
       toast({
-        title: "error.response.data.message",
+        title: action.payload.response.data.message,
         description: "Username or Password is invalid!",
         status: "error",
         isClosable: true,

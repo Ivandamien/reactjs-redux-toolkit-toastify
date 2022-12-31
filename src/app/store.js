@@ -1,8 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { chakraAuthSlice } from "./auth/LoginSlice";
+import chakraAuthSlice from "./chakraAuth/loginSlice";
 
 export const store = configureStore({
   reducer: {
-    chakraAuth: chakraAuthSlice,
+    auth: chakraAuthSlice,
   },
 });
