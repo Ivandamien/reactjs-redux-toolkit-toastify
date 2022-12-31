@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { apiInstance } from "../../api/axios.config";
+import { axiosInstance } from "../../api/axios.config";
 import { createStandaloneToast } from "@chakra-ui/react";
 
 const { toast } = createStandaloneToast();
@@ -10,31 +10,34 @@ const initialState = {
   error: null,
 };
 
-export const chakraUserLogin = createAsyncThunk("auth/chakraUserLogin", async (user, thunkAPI) => {
-  const { rejectWithValue } = thunkAPI;
-  const { username, password } = user;
+export const chakraUserLogin = createAsyncThunk(
+  "chakraAuth/chakraUserLogin",
+  async (user, thunkAPI) => {
+    const { rejectWithValue } = thunkAPI;
+    const { username, password } = user;
 
-  try {
-    const { data } = await apiInstance.post(
-      "/auth/login",
-      {
-        username, // 'kminchelle'
-        password, // '0lelplR'
-      },
-      {
-        headers: {
-          "Content-Type": "application/json",
+    try {
+      const { data } = await axiosInstance.post(
+        "/auth/login",
+        {
+          username, // 'kminchelle'
+          password, // '0lelplR'
         },
-      }
-    );
-    return data;
-  } catch (error) {
-    return rejectWithValue(error);
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      return data;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
   }
-});
+);
 
 export const chakraAuthSlice = createSlice({
-  name: "auth",
+  name: "chakraAuth",
   initialState,
   extraReducers: {
     [chakraUserLogin.pending]: state => {
@@ -65,5 +68,7 @@ export const chakraAuthSlice = createSlice({
     },
   },
 });
+
+export const selectChakraAuth = ({ chakraAuth }) => chakraAuth;
 
 export default chakraAuthSlice.reducer;

@@ -1,4 +1,4 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   Flex,
   Box,
@@ -14,11 +14,11 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import { useState } from "react";
-import { chakraUserLogin } from "../app/chakraAuth/loginSlice";
+import { chakraUserLogin, selectChakraAuth } from "../app/chakraAuth/loginSlice";
 
 export default function ChakraLoginForm() {
   const dispatch = useDispatch();
-
+  const { isLoading } = useSelector(selectChakraAuth);
   /**--------- STATE ---------**/
   const [user, setUser] = useState({
     username: "",
@@ -63,6 +63,7 @@ export default function ChakraLoginForm() {
               <Input name="password" value={user.password} onChange={handleChange} />
             </FormControl>
             <Button
+              isLoading={isLoading}
               type="submit"
               bg={"green.400"}
               color={"white"}

@@ -3,6 +3,6 @@ import chakraAuthSlice from "./chakraAuth/loginSlice";
 
 export const store = configureStore({
   reducer: {
-    auth: chakraAuthSlice,
+    chakraAuth: chakraAuthSlice,
   },
 });
