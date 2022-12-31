@@ -1,17 +1,18 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import "./App.css";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import ReduxLoginForm from "./components/ReduxLoginForm";
 import PromiseLoginForm from "./components/PromiseLoginForm";
 import ChakraLoginForm from "./components/ChakraLoginForm";
-import { Button } from "@chakra-ui/react";
+import { Button, HStack } from "@chakra-ui/react";
+import "./App.css";
 
 function App() {
   const [activeView, setActiveView] = useState("promise");
 
   return (
-    <div className="App">
-      <div className="card">
+    <>
+      <HStack justifyContent={"center"}>
         <Button colorScheme="blue" onClick={() => setActiveView("promise")}>
           With Promise
         </Button>
@@ -21,26 +22,16 @@ function App() {
         <Button colorScheme="purple" onClick={() => setActiveView("redux")}>
           With Redux + Toastify
         </Button>
-      </div>
+      </HStack>
 
-      {activeView === "promise" ? (
-        <div>
-          <PromiseLoginForm title={"Promise"} />
-        </div>
-      ) : null}
+      {activeView === "promise" ? <PromiseLoginForm title={"Promise"} /> : null}
 
-      {activeView === "chakra" ? (
-        <div>
-          <ChakraLoginForm title={"Redux Toolkit"} />
-        </div>
-      ) : null}
+      {activeView === "chakra" ? <ChakraLoginForm title={"Redux Toolkit"} /> : null}
 
-      {activeView === "redux" ? (
-        <div>
-          <ReduxLoginForm title={"Chakra UI"} />
-        </div>
-      ) : null}
-    </div>
+      {activeView === "redux" ? <ReduxLoginForm title={"Chakra UI"} /> : null}
+
+      <ToastContainer />
+    </>
   );
 }
 
