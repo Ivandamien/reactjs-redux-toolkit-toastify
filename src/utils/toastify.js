@@ -1,4 +1,3 @@
-/* eslint-disable no-unreachable-loop */
 import { toast } from "react-toastify";
 
 export default function showToastier(message, autoClose = 2000, type = "info", refresh = false) {
@@ -7,8 +6,9 @@ export default function showToastier(message, autoClose = 2000, type = "info", r
       window.location.reload(true);
     }, autoClose + 1000);
   }
+
   return toast(message, {
-    position: "top-right",
+    position: "bottom-center",
     autoClose,
     hideProgressBar: false,
     closeOnClick: true,
