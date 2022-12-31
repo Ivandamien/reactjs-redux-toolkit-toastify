@@ -1,34 +1,48 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import { useState } from "react";
+import reactLogo from "./assets/react.svg";
+import "./App.css";
+import ReduxLoginForm from "./components/ReduxLoginForm";
+import PromiseLoginForm from "./components/PromiseLoginForm";
+import ChakraLoginForm from "./components/ChakraLoginForm";
+import { Button } from "@chakra-ui/react";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [activeView, setActiveView] = useState("promise");
 
   return (
     <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
+      <h1>React + Redux Toolkit + Toast</h1>
       <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+        <Button colorScheme="blue" onClick={() => setActiveView("promise")}>
+          With Promise
+        </Button>
+        <Button colorScheme="purple" onClick={() => setActiveView("redux")}>
+          With Redux Toolkit
+        </Button>
+        <Button colorScheme="green" onClick={() => setActiveView("chakra")}>
+          With Chakra UI
+        </Button>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+
+      {activeView === "promise" ? (
+        <div>
+          <PromiseLoginForm title={"Promise"} />
+        </div>
+      ) : null}
+
+      {activeView === "chakra" ? (
+        <div>
+          <ChakraLoginForm title={"Redux Toolkit"} />
+        </div>
+      ) : null}
+
+      {activeView === "redux" ? (
+        <div>
+          <ReduxLoginForm title={"Chakra UI"} />
+        </div>
+      ) : null}
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

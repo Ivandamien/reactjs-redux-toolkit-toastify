@@ -36,6 +36,9 @@
   padding: 2em;
 }
 
+.card button {
+  margin-right: 1rem;
+}
 .read-the-docs {
   color: #888;
 }
