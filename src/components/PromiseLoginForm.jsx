@@ -34,7 +34,7 @@ export default function PromiseLoginForm() {
 
   const submitHandler = e => {
     e.preventDefault();
-    console.log(e);
+
     setIsLoading(true);
     axiosInstance
       .post(
@@ -42,7 +42,6 @@ export default function PromiseLoginForm() {
         {
           username: user.username, // 'kminchelle'
           password: user.password, // '0lelplR'
-          // expiresInMins: 60     // optional
         },
         {
           headers: {

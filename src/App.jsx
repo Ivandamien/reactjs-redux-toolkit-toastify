@@ -13,7 +13,7 @@ function App() {
     <Stack flexDirection={"row"} alignItems={"center"} justifyContent={"center"} h={"100vh"}>
       <Box>
         <Heading mb={10} fontSize={"5xl"} textAlign="center">
-          Toastify
+          ReactJS + Toastify
         </Heading>
         <HStack justifyContent={"center"}>
           <Button colorScheme="blue" onClick={() => setActiveView("promise")}>
